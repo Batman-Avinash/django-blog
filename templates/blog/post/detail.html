@@ -1,0 +1,57 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="w3-container">
+	<img src="{% if post.image %}{{ post.image.url }}{% else %}{% static 'blog/images/woods.jpg' %}{% endif %}" alt="Nature" class="w3-image w3-container" style="margin-bottom: 5rem; max-width: 100%;">
+	<div class="w3-container">
+		<h3><b>{{ post.title }}</b></h3>
+		<h5>
+		By <small>{{ post.author }}</small> <span class="w3-opacity">April 7, 2014</span>
+		</h5>
+	</div>
+	<div class="w3-container">
+		<p>{{ post.body|linebreaks }} </p>
+	</div>
+	<div class="w3-container">
+		<p>
+			<a href="{% url 'blog:post_share' post.id %}" class="w3-button w3-red">
+				Share this post
+			</a>
+			<a href="{% url 'blog:blog-home' %}" class="w3-button w3-blue">Home</a>
+		</p>
+	</div>
+	
+	{% with comments.count as total_comments %}
+		<h2>
+			{{ total_comments }} comment {{ total_comments|pluralize }}
+		</h2>
+	{% endwith %}
+	{% for comment in comments %}
+		<div class="w3-card w3-white wr-box" style="max-width: 30rem;">
+			<p class="w3-container">
+				Comment {{ forloop.counter }} by {{ comment.name }}
+				{{ comment.created }}
+			</p>
+			<span>
+				{{ comment.body|linebreaks }}
+			</span>
+		</div>
+		{% empty %}
+		<p>There are no comments yet.</p>
+	{% endfor %}
+	{% if new_comment %}
+		<h2>Your comment had been added</h2>
+	{% else %}
+	<h2>Add a new comment</h2>
+	<form action="." method="post">
+		{{ comment_form.as_p }}
+		{% csrf_token %}
+		<p>
+			<input type="submit" value="Add comment">
+		</p>
+	</form>
+	{% endif %}
+</div>
+{% endblock content %}

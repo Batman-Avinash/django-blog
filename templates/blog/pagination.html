@@ -1,0 +1,15 @@
+ <div class="w3-bar">
+ 	{% if page.has_previous %}
+		<a href="?page={{ page.previous_page_number }}" class="w3-button">
+			&laquo;
+		</a> 		
+ 	{% endif %}
+ 	<a href="#" class="w3-button w3-red">
+ 		Page {{ page.number }} of {{ page.paginator.num_pages }}
+ 	</a>
+ 	{% if page.has_next %}
+		 <a href="?page={{ page.next_page_number }}" class="w3-button">
+			&raquo;
+		</a> 		
+ 	{% endif %}
+</div> 

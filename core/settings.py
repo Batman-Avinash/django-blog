@@ -31,6 +31,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+
+    'home.apps.HomeConfig',
+    'blog.apps.BlogConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +45,7 @@ INSTALLED_APPS = [
 
     # extra apps
     'debug_toolbar',
+    'taggit',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -127,6 +132,15 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# E-mail settings
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = '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'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 
 # Internationalization
