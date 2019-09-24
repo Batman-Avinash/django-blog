@@ -138,7 +138,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = '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'
+EMAIL_HOST_PASSWORD = 'pass'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
