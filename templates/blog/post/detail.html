@@ -1,5 +1,6 @@
 {% extends "blog/base.html" %}
 {% load static %}
+{% load humanize %}
 
 {% block content %}
 
@@ -25,18 +26,20 @@
 	
 	{% with comments.count as total_comments %}
 		<h2>
-			{{ total_comments }} comment {{ total_comments|pluralize }}
+			{{ total_comments }} comment{{ total_comments|pluralize }}
 		</h2>
 	{% endwith %}
 	{% for comment in comments %}
-		<div class="w3-card w3-white wr-box" style="max-width: 30rem;">
-			<p class="w3-container">
-				Comment {{ forloop.counter }} by {{ comment.name }}
-				{{ comment.created }}
-			</p>
-			<span>
+		<div class="w3-white w3-panel w3-padding-16 w3-orange" >
+			<div class="w3-container">
+				<p style="font-size: 13px;">
+					Comment by {{ comment.name }} on
+				{{ comment.created|naturaltime }}
+				</p>
+				<span>
 				{{ comment.body|linebreaks }}
-			</span>
+				</span>
+			</div>
 		</div>
 		{% empty %}
 		<p>There are no comments yet.</p>
@@ -49,7 +52,7 @@
 		{{ comment_form.as_p }}
 		{% csrf_token %}
 		<p>
-			<input type="submit" value="Add comment">
+			<input class="w3-btn w3-white w3-border w3-border-red w3-round-large" type="submit" value="Add comment">
 		</p>
 	</form>
 	{% endif %}

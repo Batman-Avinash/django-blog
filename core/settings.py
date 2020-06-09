@@ -31,10 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-
-    'home.apps.HomeConfig',
-    'blog.apps.BlogConfig',
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,20 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django.contrib.humanize',
 
     # extra apps
     'debug_toolbar',
     'taggit',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    # uncomment this for facebook, github, google, instagram
-    # 'allauth.socialaccount.providers.facebook',
-    # 'allauth.socialaccount.providers.github',
-    # 'allauth.socialaccount.providers.google',
-    # 'allauth.socialaccount.providers.instagram', 
 
-
+    # Local Apps
+    'blog.apps.BlogConfig',
 ]
 
 MIDDLEWARE = [
@@ -83,9 +73,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
-                # `allauth` needs this from django
-                'django.template.context_processors.request',
             ],
         },
     },
@@ -95,9 +82,6 @@ TEMPLATES = [
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
-
-    # `allauth` specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 
